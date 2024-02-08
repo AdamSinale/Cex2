@@ -18,7 +18,7 @@
     int shortestPath(int i, int j,int graph[][SIZE]);
 
     /* will create lists of items, values and weights */
-    void getItems(int items[],int values[],int weights[]);
+    void getItems(char items[],int values[],int weights[]);
     /* will return the best items to put in the backpack*/
     int knapSack(int weights[],int values[],int selected_bool[]);
 #endif
