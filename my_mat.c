@@ -30,10 +30,10 @@ int shortestPath(int i, int j, int graph[][SIZE]){
     return -1;
 }
 
-void getItems(int items[ITEMSNUM],int values[ITEMSNUM],int weights[ITEMSNUM]){
+void getItems(char items[],int values[],int weights[]){
     for(int i=0;i<ITEMSNUM;i++){
-        scanf("%d", &graph[i][j]);
-        scanf("%d", &graph[i][j]);
-        scanf("%d", &graph[i][j]);
+        scanf("%c", &items[i]);
+        scanf("%d", &values[i]);
+        scanf("%d", &weights[i]);
     }
 }

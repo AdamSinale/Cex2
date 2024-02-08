@@ -2,15 +2,14 @@
 #include <stdio.h>
 #include "my_mat.h"
 
-
 int main(){
-    double graph[SIZE][SIZE];
+    int graph[SIZE][SIZE];
     int i,j;
     char function;
 
     while(function != 'D' || function != EOF){
         scanf("%c", &function);
-        switch (function){
+        switch(function){
             case 'A':
                 getGraph(graph);
                 break;
@@ -20,19 +19,11 @@ int main(){
                 break;
             case 'C':
                 scanf("%d %d", &i, &j);
-                printf("%lf\n",shortestPath(i,j,graph));
+                printf("%d\n",shortestPath(i,j,graph));
                 break;
             default:
                 break;
         }
     }
-
-    for(int i=0; i<SIZE; i++){
-        for(int j=0;j<SIZE;j++){
-            printf("%lf\t", graph[i][j]);
-        }
-            printf("\n");
-    }
-
     return 0;
 }
