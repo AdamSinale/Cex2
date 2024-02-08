@@ -1,0 +1,38 @@
+
+#include <stdio.h>
+#include "my_mat.h"
+
+
+int main(){
+    double graph[SIZE][SIZE];
+    int i,j;
+    char function;
+
+    while(function != 'D' || function != EOF){
+        scanf("%c", &function);
+        switch (function){
+            case 'A':
+                getGraph(graph);
+                break;
+            case 'B':
+                scanf("%d %d", &i, &j);
+                printf("%s\n",isTherePath(i,j,graph) == TRUE ? "True" : "False");
+                break;
+            case 'C':
+                scanf("%d %d", &i, &j);
+                printf("%lf\n",shortestPath(i,j,graph));
+                break;
+            default:
+                break;
+        }
+    }
+
+    for(int i=0; i<SIZE; i++){
+        for(int j=0;j<SIZE;j++){
+            printf("%lf\t", graph[i][j]);
+        }
+            printf("\n");
+    }
+
+    return 0;
+}
