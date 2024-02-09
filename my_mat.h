@@ -7,7 +7,7 @@
 
     #define SIZE 10
 
-    #define WIDTH 20
+    #define WEIGHT 20
     #define ITEMSNUM 5
 
     /* will create a new graph by the user's input*/

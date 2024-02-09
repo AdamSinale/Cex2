@@ -9,9 +9,9 @@ void getGraph(int graph[][SIZE]){
             scanf("%d", &graph[i][j]);
         }
     }
-    for(int a=1; a<SIZE; a++){
-        for(int i=1;i<SIZE;i++){
-            for(int j=1;j<SIZE;j++){
+    for(int a=0; a<SIZE; a++){
+        for(int i=0;i<SIZE;i++){
+            for(int j=0;j<SIZE;j++){
                 if(i!=a && j!=a && j!=i){
                     if((graph[i][j]>graph[i][a]+graph[a][j] || graph[i][j]==0) && graph[i][a] != 0 && graph[a][j] != 0){
                         graph[i][j] = graph[i][a] + graph[a][j];
@@ -36,4 +36,18 @@ void getItems(char items[],int values[],int weights[]){
         scanf("%d", &values[i]);
         scanf("%d", &weights[i]);
     }
+}
+int knapSack(int weights[],int values[],int selected_bool[]){
+    int table[ITEMSNUM+1][WEIGHT+1];
+    for(int i=1;i<WEIGHT;i++){
+        for(int j=1;j<ITEMSNUM;j++){
+            if(weights[j] > i){ break; }
+            if(table[i-1][j] > values[j] + table[i-1][j-weights[j]])
+                table[i][j] = table[i-1][j];
+            else{
+                table[i][j] = values[j] + table[i-1][j-weights[j]];
+            }
+        }
+    }
+    return table[ITEMSNUM+1][WEIGHT+1];
 }
