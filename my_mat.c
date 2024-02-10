@@ -4,14 +4,14 @@
 
 
 void getGraph(int graph[][SIZE]){
-    for(int i=0; i<SIZE; i++){
-        for(int j=0;j<SIZE;j++){
+    for(size_t i=0; i<SIZE; i++){
+        for(size_t j=0;j<SIZE;j++){
             scanf("%d", &graph[i][j]);
         }
     }
-    for(int a=0; a<SIZE; a++){
-        for(int i=0;i<SIZE;i++){
-            for(int j=0;j<SIZE;j++){
+    for(size_t a=0; a<SIZE; a++){
+        for(size_t i=0;i<SIZE;i++){
+            for(size_t j=0;j<SIZE;j++){
                 if(i!=a && j!=a && j!=i){
                     if((graph[i][j]>graph[i][a]+graph[a][j] || graph[i][j]==0) && graph[i][a] != 0 && graph[a][j] != 0){
                         graph[i][j] = graph[i][a] + graph[a][j];
@@ -30,24 +30,31 @@ int shortestPath(int i, int j, int graph[][SIZE]){
     return -1;
 }
 
-void getItems(char items[],int values[],int weights[]){
-    for(int i=0;i<ITEMSNUM;i++){
-        scanf("%c", &items[i]);
-        scanf("%d", &values[i]);
-        scanf("%d", &weights[i]);
-    }
-}
 int knapSack(int weights[],int values[],int selected_bool[]){
-    int table[ITEMSNUM+1][WEIGHT+1];
-    for(int i=1;i<WEIGHT;i++){
-        for(int j=1;j<ITEMSNUM;j++){
-            if(weights[j] > i){ break; }
-            if(table[i-1][j] > values[j] + table[i-1][j-weights[j]])
-                table[i][j] = table[i-1][j];
+    int table[ITEMSNUM][WEIGHT+1] = {{0}};
+    for(size_t i=0;i<=WEIGHT;i++){
+        if(weights[0]<=i){ 
+            table[0][i]=values[0]; 
+        } 
+    }
+    for(size_t j=1;j<ITEMSNUM;j++){
+        for(size_t i=1;i<=WEIGHT;i++){
+            if(weights[j] > i || table[j-1][i] > values[j] + table[j-1][i-weights[j]])
+                table[j][i] = table[j-1][i];
             else{
-                table[i][j] = values[j] + table[i-1][j-weights[j]];
+                table[j][i] = values[j] + table[j-1][i-weights[j]];
             }
         }
     }
-    return table[ITEMSNUM+1][WEIGHT+1];
+    int index = WEIGHT;
+    for(size_t j=ITEMSNUM-1;j>0;j--){
+        if(table[j][index] != table[j-1][index]){
+            selected_bool[j]=1;
+            index -= weights[j];
+        }else{
+            selected_bool[j]=0;
+        }
+    }
+    selected_bool[0] = table[0][index]>0 ? 1 : 0;
+    return table[ITEMSNUM-1][WEIGHT];
 }
