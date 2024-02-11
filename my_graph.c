@@ -7,7 +7,7 @@ int main(){
     int i,j;
     char function;
 
-    while(function != 'D' || function != EOF){
+    while(function != 'D' && function != EOF){
         scanf(" %c", &function);
         switch(function){
             case 'A':
