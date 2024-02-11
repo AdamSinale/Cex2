@@ -6,7 +6,7 @@
 void getGraph(int graph[][SIZE]){
     for(size_t i=0; i<SIZE; i++){
         for(size_t j=0;j<SIZE;j++){
-            scanf("%d", &graph[i][j]);
+            scanf(" %d", &graph[i][j]);
         }
     }
     for(size_t a=0; a<SIZE; a++){
