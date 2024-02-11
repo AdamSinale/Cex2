@@ -8,7 +8,7 @@ int main(){
     char function;
 
     while(function != 'D' || function != EOF){
-        scanf("%c", &function);
+        scanf(" %c", &function);
         switch(function){
             case 'A':
                 getGraph(graph);
